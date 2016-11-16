@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name">My Brotherhood App</string>
+    <string name="title_login">Log in to the app</string>
+    <string name="title_image">Image</string>
+    <string name="title_add_edit">Add/Edit Suggestion</string>
+    <string name="title_suggestion">Suggestion</string>
+
+    <string name="text_initial">
+        Welcome to My Brotherhood App\n\n
+
+        Here you will be able to be informed with the latest news of your brotherhood, as well as
+        have the posibility of seen media content of it. There is also a suggestions box where we
+        will be grateful to have your opinions about the brotherhood and also about de app.\n\n
+
+        Enjoy it!
+    </string>
+
+    <string name="text_history">El día 31 de marzo de 2011, el Obispado de Coria-Cáceres da el visto
+        bueno a la puesta en marcha de la Hermandad Universitaria de Jesús Condenado, gestada en los
+        últimos años por un grupo de personas vinculadas a la Semana Santa cacereña y convencidas de
+        que la nueva cofradía tiene espacio y sentido en estos tiempos, tanto por el momento en el
+        que procesiona, ya que completa la madrugada cacereña (del Jueves al Viernes Santo), como
+        por sus cuatro pilares básicos:  innovación en todos sus aspectos, acorde con una hermandad
+        nacida en el siglo XXI; realismo en la imaginería; austeridad en su forma y en su fondo,
+        prescindiendo incluso de las ayudas públicas; y solidaridad con quienes precisan apoyo.
+    </string>
+    <string name="text_social">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc finibus
+        efficitur nibh ac viverra. Phasellus sapien libero, placerat egestas dictum vitae, dapibus
+        id quam. Duis rhoncus, neque non sollicitudin pharetra, dui tellus ultrices lectus, non
+        fermentum nunc tortor molestie libero. Pellentesque in nulla fermentum, posuere sapien quis,
+        egestas tortor. Sed varius molestie arcu, vel tempus ipsum bibendum ut. Etiam pretium in
+        enim in placerat. Integer nec convallis neque. Sed ullamcorper est vitae velit pharetra
+        ultrices. Nunc tincidunt efficitur egestas. Phasellus imperdiet feugiat nisl, eget euismod
+        enim aliquet eu.</string>
+    <string name="text_managers">
+        This is the current composition of the Brotherhood Managers Team:\n\n
+        – P. Fernando Alcázar Martínez\n
+        – Jesús Sellers Bermejo\n
+        – Javier Chaves Quesada\n
+        – Julio Lancho Romero\n
+        – Juan Carlos Soler Rodríguez\n
+        – Juan Ramón Jiménez González\n
+        – Ángel Martín Alía\n
+        – Juan José Lázaro Carriches\n
+        – Marcos Fernández Sellers\n
+        – Ana Rasero Tapia\n
+        – Javier Sellers Bermejo\n
+        – Juan María Rufo Jimeno
+    </string>
+
+    <string name="text_share">
+        Find us on\n
+        Twitter: @jesuscondenado\n
+        Facebook: Hermandad Universitaria de Jesus Condenado\n\n
+
+        Sharing the app help us to keep improving it
+    </string>
+    <string name="text_unlogged">You must be logged to see this section</string>
+
+    <string-array name="titles_tab">
+        <item>History</item>
+        <item>Social</item>
+        <item>Managers</item>
+    </string-array>
+
+    <string name="title_activity_main2">My Brotherhood App</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_login">Log in</string>
+    <string name="action_share">Share</string>
+
+    <string name="field_error">Set a value</string>
+
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Remove</string>
+
+    <string-array name="image_ids">
+        <item>@drawable/image_1</item>
+        <item>@drawable/image_2</item>
+        <item>@drawable/image_3</item>
+        <item>@drawable/image_4</item>
+        <item>@drawable/image_1</item>
+        <item>@drawable/image_2</item>
+        <item>@drawable/image_3</item>
+        <item>@drawable/image_4</item>
+        <item>@drawable/image_1</item>
+        <item>@drawable/image_2</item>
+        <item>@drawable/image_3</item>
+        <item>@drawable/image_4</item>
+    </string-array>
+
+    <string name="pref_text_title">Text Preferences</string>
+    <string name="pref_summary_text_size">Change text size according to your needs</string>
+    <string name="pref_title_text_size">Text size</string>
+</resources>

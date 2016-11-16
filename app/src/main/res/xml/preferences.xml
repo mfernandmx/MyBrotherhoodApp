@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:title="General">
+        <CheckBoxPreference
+            android:id="@+id/pref_nightmode"
+            android:defaultValue="false"
+            android:title="Night mode"
+            android:key="pref_nightmode"
+            android:summary ="Activate the night mode"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Text">
+
+        <EditTextPreference
+            android:id="@+id/pref_textsize"
+            android:defaultValue="18"
+            android:selectAllOnFocus="true"
+            android:inputType="number"
+            android:singleLine="true"
+            android:title="Text size"
+            android:key="pref_textsize" />
+    </PreferenceCategory>
+</PreferenceScreen>
