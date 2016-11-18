@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.marcos.mybrotherhoodapp.items.SuggestionItem;
 
@@ -32,6 +33,7 @@ public class SuggestionsDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(sqlCreate);
 
+        Log.v("DB", "onCreate");
         mockData(sqLiteDatabase);
     }
 
@@ -99,6 +101,9 @@ public class SuggestionsDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // No hay operaciones
+        Log.v("DB", "onUpgrade");
+
+        db.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME);
+        onCreate(db);
     }
 }
