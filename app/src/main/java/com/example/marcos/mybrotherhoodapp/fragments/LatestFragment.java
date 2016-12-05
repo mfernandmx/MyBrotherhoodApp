@@ -2,6 +2,7 @@ package com.example.marcos.mybrotherhoodapp.fragments;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
@@ -17,6 +18,14 @@ import com.example.marcos.mybrotherhoodapp.items.LatestItem;
 import com.example.marcos.mybrotherhoodapp.R;
 import com.example.marcos.mybrotherhoodapp.adapters.RecyclerViewAdapter;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +59,6 @@ public class LatestFragment extends Fragment {
         rvLatest.setLayoutManager(llm);
 
         initializeData();
-        initializeAdapter();
 
         rvLatest.setItemAnimator(new DefaultItemAnimator());
 
@@ -65,31 +73,21 @@ public class LatestFragment extends Fragment {
         links = new ArrayList<>();
         data = new ArrayList<>();
 
-        //Random headlines
-
-        headlines.add(0, "CampusVirtual");
-        headlines.add(1, "UNEx");
-        headlines.add(2, "Android Developers");
-        headlines.add(3, "Android");
-        headlines.add(4, "Google Translate");
-
-        for (int i = 0; i < 10; i++){
-            headlines.add(i+5,"News " + (i+1));
+        URL url = null;
+        try {
+            url = new URL("https://jesuscondenado.com/feed/");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
 
-        // Random links
-        links.add(0,"https://campusvirtual.unex.es/portal/");
-        links.add(1,"http://www.unex.es/");
-        links.add(2,"https://developer.android.com/index.html");
-        links.add(3,"https://www.android.com/intl/es_es/");
-        links.add(4,"https://translate.google.com/?hl=es");
+        new ProcessXML().execute(url);
+    }
 
-        for (int i = 0; i < 10; i++){
-            links.add(i+5,"http://www.unex.es/");
-        }
-
-        for (int i = 0; i < 15; i++){
-            data.add(i, new LatestItem(headlines.get(i), links.get(i)));
+    public InputStream getInputStream(URL url) {
+        try {
+            return url.openConnection().getInputStream();
+        } catch (IOException e) {
+            return null;
         }
     }
 
@@ -107,4 +105,74 @@ public class LatestFragment extends Fragment {
 
         rvLatest.setAdapter(adapter);
     }
+
+    private class ProcessXML extends AsyncTask<URL, Void, Integer> {
+
+        protected Integer doInBackground(URL... urls) {
+            Log.v(TAG,"doInBackground");
+            try {
+                URL url = urls[0];
+
+                XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+                factory.setNamespaceAware(false);
+                XmlPullParser xpp = factory.newPullParser();
+
+                // We will get the XML from an input stream
+                xpp.setInput(getInputStream(url), "UTF_8");
+
+        /* We will parse the XML content looking for the "<title>" tag which appears inside the "<item>" tag.
+         * However, we should take in consideration that the rss feed name also is enclosed in a "<title>" tag.
+         * As we know, every feed begins with these lines: "<channel><title>Feed_Name</title>...."
+         * so we should skip the "<title>" tag which is a child of "<channel>" tag,
+         * and take in consideration only "<title>" tag which is a child of "<item>"
+         *
+         * In order to achieve this, we will make use of a boolean variable.
+         */
+                boolean insideItem = false;
+
+                // Returns the type of current event: START_TAG, END_TAG, etc..
+                int eventType = xpp.getEventType();
+                while (eventType != XmlPullParser.END_DOCUMENT) {
+                    if (eventType == XmlPullParser.START_TAG) {
+
+                        if (xpp.getName().equalsIgnoreCase("item")) {
+                            insideItem = true;
+                        } else if (xpp.getName().equalsIgnoreCase("title")) {
+                            if (insideItem)
+                                headlines.add(xpp.nextText()); //extract the headline
+                        } else if (xpp.getName().equalsIgnoreCase("link")) {
+                            if (insideItem)
+                                links.add(xpp.nextText()); //extract the link of article
+                        }
+                    }else if(eventType==XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")){
+                        insideItem=false;
+                    }
+
+                    eventType = xpp.next(); //move to next element
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (XmlPullParserException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return headlines.size();
+
+        }
+
+        protected void onPostExecute(Integer numHeadlines) {
+            Log.v(TAG, "Headlines: " + numHeadlines);
+
+            for (int i = 0; i < headlines.size(); i++){
+                data.add(i, new LatestItem(headlines.get(i), links.get(i)));
+            }
+
+            initializeAdapter();
+        }
+    }
 }
+
+

@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.marcos.mybrotherhoodapp">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -10,6 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main2"
@@ -22,16 +24,16 @@
         </activity>
         <activity
             android:name=".DetailsGridActivity"
-            android:label="@string/title_image"></activity>
+            android:label="@string/title_image"/>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_login"></activity>
+            android:label="@string/title_login"/>
         <activity
             android:name=".AddEditSuggestionActivity"
-            android:label="@string/title_add_edit"></activity>
+            android:label="@string/title_add_edit"/>
         <activity
             android:name=".SuggestionDetailActivity"
-            android:label="@string/title_suggestion"></activity>
+            android:label="@string/title_suggestion"/>
     </application>
 
 </manifest>
