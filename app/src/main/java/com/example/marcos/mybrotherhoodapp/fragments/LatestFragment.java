@@ -169,7 +169,7 @@ public class LatestFragment extends Fragment {
             for (int i = 0; i < headlines.size(); i++){
                 data.add(i, new LatestItem(headlines.get(i), links.get(i)));
             }
-
+            
             initializeAdapter();
         }
     }
