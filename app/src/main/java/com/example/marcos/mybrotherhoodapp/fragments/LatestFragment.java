@@ -1,9 +1,12 @@
 package com.example.marcos.mybrotherhoodapp.fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -43,6 +46,8 @@ public class LatestFragment extends Fragment {
 
     private static final String TAG = "LatestFragment";
 
+    View v;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +55,7 @@ public class LatestFragment extends Fragment {
 
         Log.v(TAG, "onCreateView");
 
-        View v = inflater.inflate(R.layout.recycler_view, container, false);
+        v = inflater.inflate(R.layout.recycler_view, container, false);
 
         rvLatest = (RecyclerView) v.findViewById(R.id.recyclerView);
 
@@ -172,6 +177,27 @@ public class LatestFragment extends Fragment {
             
             initializeAdapter();
         }
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+
+        boolean nightMode;
+        int backgroundColor;
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        //Set night or day mode
+        nightMode = sharedPref.getBoolean(SettingsFragment.KEY_PREF_NIGHTMODE, false);
+        if (nightMode){
+            backgroundColor = getResources().getColor(R.color.colorPrimaryDark);
+        } else{
+            backgroundColor = Color.WHITE;
+        }
+        v.setBackgroundColor(backgroundColor);
+
     }
 }
 

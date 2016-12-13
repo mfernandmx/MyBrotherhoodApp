@@ -2,6 +2,7 @@ package com.example.marcos.mybrotherhoodapp.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ public class GridViewAdapter extends ArrayAdapter<ImageItem> {
     private Context context;
     private int layoutResourceId;
     private ArrayList<ImageItem> data = new ArrayList<>();
+
+    private boolean nightMode = false;
 
     public GridViewAdapter(Context context, int layoutResourceId, ArrayList<ImageItem> data) {
         super(context, layoutResourceId, data);
@@ -47,6 +50,16 @@ public class GridViewAdapter extends ArrayAdapter<ImageItem> {
         ImageItem item = data.get(position);
 
         holder.imageTitle.setText(item.getTitle());
+
+        int textColor;
+        if (!nightMode){
+            textColor = Color.BLACK;
+        } else{
+            textColor = Color.WHITE;
+        }
+        holder.imageTitle.setTextColor(textColor);
+
+
         holder.image.setImageBitmap(item.getImage());
         return row;
     }
@@ -54,5 +67,9 @@ public class GridViewAdapter extends ArrayAdapter<ImageItem> {
     static class ViewHolder {
         TextView imageTitle;
         ImageView image;
+    }
+
+    public void setNightMode(boolean nightMode){
+        this.nightMode = nightMode;
     }
 }

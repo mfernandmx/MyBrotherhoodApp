@@ -1,10 +1,13 @@
 package com.example.marcos.mybrotherhoodapp.fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -29,12 +32,16 @@ public class GalleryFragment extends Fragment {
     private GridView gridView;
     private GridViewAdapter gridAdapter;
 
+    private static final String TAG = "GalleryFragment";
+
     View v;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_gallery, container, false);
+
+
 
         return v;
     }
@@ -68,5 +75,27 @@ public class GalleryFragment extends Fragment {
             imageItems.add(new ImageItem(bitmap, "Image " + i));
         }
         return imageItems;
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+
+        boolean nightMode;
+        int backgroundColor;
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        //Set night or day mode
+        nightMode = sharedPref.getBoolean(SettingsFragment.KEY_PREF_NIGHTMODE, false);
+        if (nightMode){
+            backgroundColor = getResources().getColor(R.color.colorPrimaryDark);
+            gridAdapter.setNightMode(true);
+        } else{
+            backgroundColor = Color.WHITE;
+            gridAdapter.setNightMode(false);
+        }
+        v.setBackgroundColor(backgroundColor);
     }
 }

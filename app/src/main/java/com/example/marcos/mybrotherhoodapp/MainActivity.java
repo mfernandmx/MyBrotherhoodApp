@@ -1,6 +1,5 @@
 package com.example.marcos.mybrotherhoodapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.app.Fragment;
@@ -22,15 +21,12 @@ import com.example.marcos.mybrotherhoodapp.fragments.LatestFragment;
 import com.example.marcos.mybrotherhoodapp.fragments.SettingsFragment;
 import com.example.marcos.mybrotherhoodapp.fragments.SuggestionsFragment;
 import com.example.marcos.mybrotherhoodapp.fragments.ShareFragment;
-import com.example.marcos.mybrotherhoodapp.fragments.UnloggedFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, UnloggedFragment.loginChangedListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
 
-    static private final int LOGIN_REQUEST = 0;
-    static private boolean logged = false;
     static private Class fragmentClass = InitialFragment.class;
 
 
@@ -125,11 +121,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
             fragmentClass = ShareFragment.class;
         } else if (id == R.id.nav_suggestions) {
-           if (!logged) {
-                fragmentClass = UnloggedFragment.class;
-            }else{
-                fragmentClass = SuggestionsFragment.class;
-            }
+            fragmentClass = SuggestionsFragment.class;
         }
 
         setFragment(fragmentClass);
@@ -154,30 +146,5 @@ public class MainActivity extends AppCompatActivity
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getFragmentManager();
              fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Check which request we're responding to
-        if (requestCode == LOGIN_REQUEST) {
-            // Make sure the request was successful
-            if (resultCode == RESULT_OK) {
-                logged = data.getBooleanExtra("logged", false);
-
-                if (fragmentClass == UnloggedFragment.class){
-                    fragmentClass = SuggestionsFragment.class;
-                    setFragment(fragmentClass);
-                }
-            }
-        }
-    }
-
-    public void loginChanged (boolean isLogged){
-        logged = isLogged;
-        if (logged){
-            fragmentClass = SuggestionsFragment.class;
-            setFragment(fragmentClass);
-        }
     }
 }
