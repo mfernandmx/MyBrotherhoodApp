@@ -19,7 +19,7 @@ import com.example.marcos.mybrotherhoodapp.R;
 
 public class InitialFragment extends Fragment {
 
-    View v;
+    private View v;
 
     @Nullable
     @Override

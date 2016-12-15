@@ -21,10 +21,12 @@ public class InfoFragment extends Fragment {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
+    View v;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_information, container, false);
+        v = inflater.inflate(R.layout.fragment_information, container, false);
 
         return v;
     }
@@ -32,10 +34,10 @@ public class InfoFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        mTabLayout = (TabLayout) getView().findViewById(R.id.tab_layout);
-        mViewPager = (ViewPager) getView().findViewById(R.id.view_pager);
+        mTabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+        mViewPager = (ViewPager) view.findViewById(R.id.view_pager);
 
-        mViewPager.setAdapter(new MyFragmentPagerAdapter(getFragmentManager(), getResources().getStringArray(R.array.titles_tab)));
+        mViewPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(), getResources().getStringArray(R.array.titles_tab)));
         mTabLayout.setupWithViewPager(mViewPager);
 
     }

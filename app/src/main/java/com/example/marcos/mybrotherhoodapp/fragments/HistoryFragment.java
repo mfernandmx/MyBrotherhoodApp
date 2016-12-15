@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,18 +20,23 @@ import com.example.marcos.mybrotherhoodapp.R;
 
 public class HistoryFragment extends Fragment {
 
-    View v;
+    private View v;
+    private static final String TAG = "HistoryFragment";
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v =  inflater.inflate(R.layout.fragment_history, container, false);
+        Log.v(TAG,"onCreateView");
 
         return v;
     }
 
     @Override
     public void onResume() {
+
+        Log.v(TAG,"onResume");
 
         super.onResume();
 
