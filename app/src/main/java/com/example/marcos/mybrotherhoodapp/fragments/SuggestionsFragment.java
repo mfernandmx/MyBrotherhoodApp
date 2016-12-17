@@ -2,9 +2,12 @@ package com.example.marcos.mybrotherhoodapp.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.app.Fragment;
@@ -36,6 +39,8 @@ public class SuggestionsFragment extends Fragment {
     private ListView mSuggestionsList;
     private SuggestionsAdapter mSuggestionsAdapter;
 
+    private View v;
+
     public SuggestionsFragment() {
     }
 
@@ -46,7 +51,7 @@ public class SuggestionsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_suggestions, container, false);
+        v = inflater.inflate(R.layout.fragment_suggestions, container, false);
 
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.newSuggestion);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -132,10 +137,30 @@ public class SuggestionsFragment extends Fragment {
         protected void onPostExecute(Cursor cursor) {
             if (cursor != null && cursor.getCount() > 0) {
                 mSuggestionsAdapter.swapCursor(cursor);
-            } else {
-                // Mostrar empty state
             }
         }
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+
+        boolean nightMode;
+        int backgroundColor;
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        //Set night or day mode
+        nightMode = sharedPref.getBoolean(SettingsFragment.KEY_PREF_NIGHTMODE, false);
+        if (nightMode){
+            backgroundColor = getResources().getColor(R.color.colorPrimaryDark);
+            mSuggestionsAdapter.setNightMode(true);
+        } else{
+            backgroundColor = Color.WHITE;
+            mSuggestionsAdapter.setNightMode(false);
+        }
+        v.setBackgroundColor(backgroundColor);
     }
 
 }

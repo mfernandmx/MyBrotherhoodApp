@@ -86,22 +86,12 @@ public class AddEditSuggestionFragment extends Fragment {
     }
 
     private void addEditSuggestion() {
-        boolean error = false;
 
         String name = mNameField.getText().toString();
         String message = mMessageField.getText().toString();
 
-        if (TextUtils.isEmpty(name)) {
-            mNameLabel.setError(getString(R.string.field_error));
-            error = true;
-        }
-
-        if (TextUtils.isEmpty(message)) {
-            mSuggestionLabel.setError(getString(R.string.field_error));
-            error = true;
-        }
-
-        if (error) {
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(message)) {
+            showAddEditError();
             return;
         }
 
@@ -124,7 +114,7 @@ public class AddEditSuggestionFragment extends Fragment {
 
     private void showAddEditError() {
         Toast.makeText(getActivity(),
-                "Error at adding new information", Toast.LENGTH_SHORT).show();
+                "Error at adding new information. Complete all fields", Toast.LENGTH_SHORT).show();
     }
 
     private void showSuggestion(SuggestionItem suggestion) {
@@ -134,7 +124,7 @@ public class AddEditSuggestionFragment extends Fragment {
 
     private void showLoadError() {
         Toast.makeText(getActivity(),
-                "Error al editar abogado", Toast.LENGTH_SHORT).show();
+                "Error al editar sugerencia", Toast.LENGTH_SHORT).show();
     }
 
     private class GetLawyerByIdTask extends AsyncTask<Void, Void, Cursor> {

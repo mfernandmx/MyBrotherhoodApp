@@ -2,6 +2,7 @@ package com.example.marcos.mybrotherhoodapp.adapters;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import com.example.marcos.mybrotherhoodapp.SuggestionsConstract;
  */
 
 public class SuggestionsAdapter extends CursorAdapter {
+
+    private boolean nightMode = false;
 
     public SuggestionsAdapter(Context context, Cursor c) {
         super(context, c, 0);
@@ -40,5 +43,19 @@ public class SuggestionsAdapter extends CursorAdapter {
         // Setup.
         nameText.setText(name);
         messageText.setText(message);
+
+        int textColor;
+        if (!nightMode){
+            textColor = Color.BLACK;
+        } else{
+            textColor = Color.WHITE;
+        }
+
+        nameText.setTextColor(textColor);
+        messageText.setTextColor(textColor);
+    }
+
+    public void setNightMode(boolean nightMode){
+        this.nightMode = nightMode;
     }
 }
