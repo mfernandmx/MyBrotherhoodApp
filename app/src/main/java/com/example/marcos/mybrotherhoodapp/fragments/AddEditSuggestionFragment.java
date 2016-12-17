@@ -92,12 +92,10 @@ public class AddEditSuggestionFragment extends Fragment {
 
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(message)) {
             showAddEditError();
-            return;
+        } else{
+            SuggestionItem suggestion = new SuggestionItem(name, message);
+            new AddEditLawyerTask().execute(suggestion);
         }
-
-        SuggestionItem suggestion = new SuggestionItem(name, message);
-
-        new AddEditLawyerTask().execute(suggestion);
 
     }
 

@@ -77,19 +77,23 @@
     <string name="action_edit">Edit</string>
     <string name="action_delete">Remove</string>
 
-    <string-array name="image_ids">
-        <item>@drawable/image_1</item>
-        <item>@drawable/image_2</item>
-        <item>@drawable/image_3</item>
-        <item>@drawable/image_4</item>
-        <item>@drawable/image_1</item>
-        <item>@drawable/image_2</item>
-        <item>@drawable/image_3</item>
-        <item>@drawable/image_4</item>
-        <item>@drawable/image_1</item>
-        <item>@drawable/image_2</item>
-        <item>@drawable/image_3</item>
-        <item>@drawable/image_4</item>
+    <string-array name="textSize">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+
+    <string-array name="textSizeValues">
+        <item>10</item>
+        <item>18</item>
+        <item>25</item>
+    </string-array>
+
+    <string-array name="numPhotos">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
     </string-array>
 
     <string name="pref_text_title">Text Preferences</string>

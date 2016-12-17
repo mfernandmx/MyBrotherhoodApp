@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.example.marcos.mybrotherhoodapp.DetailsGridActivity;
 import com.example.marcos.mybrotherhoodapp.R;
@@ -47,8 +48,7 @@ public class GalleryFragment extends Fragment {
     private GridViewAdapter gridAdapter;
 
     private static final String TAG = "GalleryFragment";
-    //TODO: Settings
-    private static final int maxNumPhotosShown = 10;
+    private int maxNumPhotosShown;
 
     private List<String> titles;
     private List<String> photoLinks;
@@ -124,6 +124,9 @@ public class GalleryFragment extends Fragment {
             backgroundColor = Color.WHITE;
         }
         v.setBackgroundColor(backgroundColor);
+
+        //Set number of photos shown
+        maxNumPhotosShown = Integer.parseInt(sharedPref.getString(SettingsFragment.KEY_PREF_NUMPHOTOS,""));
     }
 
     public InputStream getInputStream(URL url) {

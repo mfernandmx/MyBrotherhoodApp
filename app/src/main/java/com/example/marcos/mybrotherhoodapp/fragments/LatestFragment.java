@@ -1,5 +1,6 @@
 package com.example.marcos.mybrotherhoodapp.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -113,6 +114,16 @@ public class LatestFragment extends Fragment {
 
     private class ProcessXML extends AsyncTask<URL, Void, Integer> {
 
+        private ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage("Loading news from RSS. Please wait...");
+            progressDialog.show();
+        }
+
         protected Integer doInBackground(URL... urls) {
             Log.v(TAG,"doInBackground");
             try {
@@ -169,6 +180,9 @@ public class LatestFragment extends Fragment {
         }
 
         protected void onPostExecute(Integer numHeadlines) {
+
+            progressDialog.dismiss();
+
             Log.v(TAG, "Headlines: " + numHeadlines);
 
             for (int i = 0; i < headlines.size(); i++){

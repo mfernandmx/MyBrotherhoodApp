@@ -13,13 +13,24 @@
     <PreferenceCategory
         android:title="Text">
 
-        <EditTextPreference
+        <ListPreference
             android:id="@+id/pref_textsize"
+            android:title="Change text size"
+            android:key="pref_textsize"
+            android:entries="@array/textSize"
             android:defaultValue="18"
-            android:selectAllOnFocus="true"
-            android:inputType="number"
-            android:singleLine="true"
-            android:title="Text size"
-            android:key="pref_textsize" />
+            android:entryValues="@array/textSizeValues"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Gallery">
+
+        <ListPreference
+            android:id="@+id/pref_numphotos"
+            android:title="Number of photos shown"
+            android:key="pref_numphotos"
+            android:entries="@array/numPhotos"
+            android:defaultValue="10"
+            android:entryValues="@array/numPhotos"/>
     </PreferenceCategory>
 </PreferenceScreen>
