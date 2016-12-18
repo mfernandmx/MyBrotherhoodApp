@@ -35,17 +35,11 @@ public class SuggestionsFragment extends Fragment {
     public static final String EXTRA_SUGGESTION_ID = "extra_suggestion_id";
 
     private SuggestionsDBHelper mSuggestionsDBHelper;
-
-    private ListView mSuggestionsList;
     private SuggestionsAdapter mSuggestionsAdapter;
 
     private View v;
 
     public SuggestionsFragment() {
-    }
-
-    public static SuggestionsFragment newInstance() {
-        return new SuggestionsFragment();
     }
 
     @Nullable
@@ -62,6 +56,7 @@ public class SuggestionsFragment extends Fragment {
         });
 
         // UI references
+        ListView mSuggestionsList;
         mSuggestionsList = (ListView) v.findViewById(R.id.suggestions_list);
         mSuggestionsAdapter = new SuggestionsAdapter(getActivity(), null);
 
@@ -82,8 +77,8 @@ public class SuggestionsFragment extends Fragment {
 
         getActivity().deleteDatabase(SuggestionsDBHelper.DATABASE_NAME);
 
-        // Helper instace
-        mSuggestionsDBHelper = new SuggestionsDBHelper(getActivity());
+        // Helper instance
+        mSuggestionsDBHelper = SuggestionsDBHelper.getInstance(getActivity());
 
         // Data load
         loadSuggestions();

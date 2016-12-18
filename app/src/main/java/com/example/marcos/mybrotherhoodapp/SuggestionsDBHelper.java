@@ -14,65 +14,102 @@ import com.example.marcos.mybrotherhoodapp.items.SuggestionItem;
 
 public class SuggestionsDBHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
+    private static SuggestionsDBHelper sInstance;
+
+    private static final String TAG = "SuggestionsDBHelper";
+
+    private static int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "Suggestions.db";
 
-    //Sentencia SQL para crear la tabla de Usuarios
-    String sqlCreate = "CREATE TABLE IF NOT EXISTS " + SuggestionsConstract.SuggestionEntry.TABLE_NAME + " ("
-            + SuggestionsConstract.SuggestionEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + SuggestionsConstract.SuggestionEntry.ID + " TEXT NOT NULL,"
-            + SuggestionsConstract.SuggestionEntry.NAME + " TEXT NOT NULL,"
-            + SuggestionsConstract.SuggestionEntry.MESSAGE + " TEXT NOT NULL,"
-            + "UNIQUE (" + SuggestionsConstract.SuggestionEntry.ID + "))";
+    public static synchronized SuggestionsDBHelper getInstance(Context context) {
+        if (sInstance == null) {
+            sInstance = new SuggestionsDBHelper(context.getApplicationContext());
+        }
+        return sInstance;
+    }
 
     public SuggestionsDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(sqlCreate);
+    public void onCreate(SQLiteDatabase db) {
 
-        Log.v("DB", "onCreate");
-        mockData(sqLiteDatabase);
+        //Sentencia SQL para crear la tabla de Usuarios
+        String sqlCreate = "CREATE TABLE IF NOT EXISTS " + SuggestionsConstract.SuggestionEntry.TABLE_NAME + " ("
+                + SuggestionsConstract.SuggestionEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + SuggestionsConstract.SuggestionEntry.ID + " TEXT NOT NULL,"
+                + SuggestionsConstract.SuggestionEntry.NAME + " TEXT NOT NULL,"
+                + SuggestionsConstract.SuggestionEntry.MESSAGE + " TEXT NOT NULL,"
+                + "UNIQUE (" + SuggestionsConstract.SuggestionEntry.ID + "))";
+
+        Log.v(TAG, "Creating the database");
+        db.execSQL(sqlCreate);
+
+        Log.v(TAG, "Adding initial data");
+        mockData(db);
     }
 
-    private void mockData(SQLiteDatabase sqLiteDatabase) {
-        mockSuggestion(sqLiteDatabase, new SuggestionItem("Carlos Perez", "Cambia los colores"));
-        mockSuggestion(sqLiteDatabase, new SuggestionItem("Daniel Samper", "Mete mas funcionalidades"));
-        mockSuggestion(sqLiteDatabase, new SuggestionItem("Lucia Aristizabal", "Elimina la app"));
-        mockSuggestion(sqLiteDatabase, new SuggestionItem("Marina Acosta", "Aprende a programar"));
-    }
+    private void mockData(SQLiteDatabase db) {
 
-    public long mockSuggestion (SQLiteDatabase db, SuggestionItem suggestion) {
-        return db.insert(
+        db.insert(
                 SuggestionsConstract.SuggestionEntry.TABLE_NAME,
                 null,
-                suggestion.toContentValues());
+                new SuggestionItem("Carlos Perez", "Cambia los colores").toContentValues());
+        db.insert(
+                SuggestionsConstract.SuggestionEntry.TABLE_NAME,
+                null,
+                new SuggestionItem("Daniel Samper", "Mete mas funcionalidades").toContentValues());
+        db.insert(
+                SuggestionsConstract.SuggestionEntry.TABLE_NAME,
+                null,
+                new SuggestionItem("Lucia Aristizabal", "Elimina la app").toContentValues());
+        db.insert(
+                SuggestionsConstract.SuggestionEntry.TABLE_NAME,
+                null,
+                new SuggestionItem("Marina Acosta", "Aprende a programar").toContentValues());
     }
 
     public long saveSuggestion(SuggestionItem suggestion) {
-        return getWritableDatabase().insert(
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        long success;
+
+        success = db.insert(
                 SuggestionsConstract.SuggestionEntry.TABLE_NAME,
                 null,
                 suggestion.toContentValues());
+
+        db.close();
+        return success;
 
     }
 
     public int deleteSuggestion(String suggestionId) {
-        return getWritableDatabase().delete(
+        SQLiteDatabase db = this.getWritableDatabase();
+        int success;
+
+        success = db.delete(
                 SuggestionsConstract.SuggestionEntry.TABLE_NAME,
                 SuggestionsConstract.SuggestionEntry.ID + " LIKE ?",
                 new String[]{suggestionId});
+
+        db.close();
+        return success;
     }
 
     public int updateSuggestion(SuggestionItem suggestion, String suggestionId) {
-        return getWritableDatabase().update(
+        SQLiteDatabase db = this.getWritableDatabase();
+        int success;
+
+        success = db.update(
                 SuggestionsConstract.SuggestionEntry.TABLE_NAME,
                 suggestion.toContentValues(),
                 SuggestionsConstract.SuggestionEntry.ID + " LIKE ?",
-                new String[]{suggestionId}
-        );
+                new String[]{suggestionId});
+
+        db.close();
+        return success;
     }
 
     public Cursor getAllSuggestions() {
@@ -88,7 +125,7 @@ public class SuggestionsDBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getSuggestionById(String suggestionId) {
-        Cursor c = getReadableDatabase().query(
+        return getReadableDatabase().query(
                 SuggestionsConstract.SuggestionEntry.TABLE_NAME,
                 null,
                 SuggestionsConstract.SuggestionEntry.ID + " LIKE ?",
@@ -96,12 +133,11 @@ public class SuggestionsDBHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 null);
-        return c;
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.v("DB", "onUpgrade");
+        Log.v(TAG, "onUpgrade");
 
         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME);
         onCreate(db);
