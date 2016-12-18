@@ -1,13 +1,11 @@
 package com.example.marcos.mybrotherhoodapp.fragments;
 
-
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -19,6 +17,10 @@ import com.example.marcos.mybrotherhoodapp.R;
 import com.example.marcos.mybrotherhoodapp.SuggestionsDBHelper;
 import com.example.marcos.mybrotherhoodapp.items.SuggestionItem;
 
+/**
+ * Class AddEditSuggestionFragment
+ * Fragment shown when a suggestions is being added/edited
+ */
 public class AddEditSuggestionFragment extends Fragment {
     private static final String ARG_SUGGESTION_ID = "arg_suggestion_id";
 
@@ -26,11 +28,8 @@ public class AddEditSuggestionFragment extends Fragment {
 
     private SuggestionsDBHelper mLawyersDbHelper;
 
-    private FloatingActionButton mSaveButton;
     private TextInputEditText mNameField;
     private TextInputEditText mMessageField;
-    private TextInputLayout mNameLabel;
-    private TextInputLayout mSuggestionLabel;
 
 
     public AddEditSuggestionFragment() {
@@ -57,6 +56,8 @@ public class AddEditSuggestionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_add_edit_suggestion, container, false);
+
+        FloatingActionButton mSaveButton;
 
         // Referencias UI
         mSaveButton = (FloatingActionButton) getActivity().findViewById(R.id.fab);

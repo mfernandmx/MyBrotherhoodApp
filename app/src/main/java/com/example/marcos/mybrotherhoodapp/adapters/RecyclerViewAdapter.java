@@ -12,17 +12,17 @@ import com.example.marcos.mybrotherhoodapp.R;
 import java.util.List;
 
 /**
- * Created by Marcos on 10/11/2016.
+ * Class RecyclerViewAdapter
+ * Adapter used for showing the links in the latest section
  */
-
 public class RecyclerViewAdapter extends RecyclerView.Adapter
         <RecyclerViewAdapter.ViewHolder>{
 
-    private List<LatestItem> mDataset;
+    private List<LatestItem> mDataSet;
     private final OnItemClickListener listener;
 
     public RecyclerViewAdapter(List<LatestItem> myDataset, OnItemClickListener listener) {
-        mDataset = myDataset;
+        mDataSet = myDataset;
         this.listener = listener;
     }
 
@@ -37,12 +37,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.bind(mDataset.get(position), listener);
+        holder.bind(mDataSet.get(position), listener);
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return mDataSet.size();
     }
 
     public final static class ViewHolder extends RecyclerView.ViewHolder {

@@ -1,28 +1,19 @@
 package com.example.marcos.mybrotherhoodapp.items;
 
-import android.content.Intent;
-
+/**
+ * Class LatestItem
+ * Declares the attributes needed to manage the links in the latest section
+ */
 public class LatestItem {
 
-	public static final String ITEM_SEP = System.getProperty("line.separator");
+	private static final String ITEM_SEP = System.getProperty("line.separator");
 
-	public final static String HEADLINE = "headline";
-	public final static String LINK = "link";
-
-	private String mHeadline = new String();
-	private String mLink = new String();
+	private String mHeadline;
+	private String mLink;
 
 	public LatestItem(String headline, String link) {
 		this.mHeadline = headline;
 		this.mLink = link;
-	}
-
-	// Create a new ToDoItem from data packaged in an Intent
-
-	public LatestItem(Intent intent) {
-
-		mHeadline = intent.getStringExtra(LatestItem.HEADLINE);
-		mLink = intent.getStringExtra(LatestItem.LINK);
 	}
 
 	public String getHeadline() {
@@ -41,20 +32,8 @@ public class LatestItem {
 		mLink = link;
 	}
 
-	public static void packageIntent(Intent intent, String headline, String link) {
-
-		intent.putExtra(LatestItem.HEADLINE, headline);
-		intent.putExtra(LatestItem.LINK, link);
-	
-	}
-
 	@Override
 	public String toString() {
 		return mHeadline + ITEM_SEP + mLink;
 	}
-
-	public String toLog() {
-		return "Headline:" + mHeadline + ITEM_SEP + "Link:" + mLink;
-	}
-
 }

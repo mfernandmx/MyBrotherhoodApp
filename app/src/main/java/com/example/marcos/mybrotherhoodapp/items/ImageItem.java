@@ -2,6 +2,10 @@ package com.example.marcos.mybrotherhoodapp.items;
 
 import android.graphics.Bitmap;
 
+/**
+ * Class ImageItem
+ * Declares the attributes needed to show the image/photo detailed
+ */
 public class ImageItem {
     private Bitmap image;
     private String title;

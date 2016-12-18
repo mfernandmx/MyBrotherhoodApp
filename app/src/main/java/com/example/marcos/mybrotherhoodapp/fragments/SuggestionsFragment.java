@@ -26,9 +26,9 @@ import com.example.marcos.mybrotherhoodapp.adapters.SuggestionsAdapter;
 import com.example.marcos.mybrotherhoodapp.SuggestionsDBHelper;
 
 /**
- * Created by Marcos on 11/11/2016.
+ * Class SuggestionsFragment
+ * Fragment shown when in the suggestions section
  */
-
 public class SuggestionsFragment extends Fragment {
 
     public static final int REQUEST_UPDATE_DELETE_SUGGESTION = 2;
@@ -74,8 +74,6 @@ public class SuggestionsFragment extends Fragment {
                 showDetailScreen(currentSuggestionId);
             }
         });
-
-        getActivity().deleteDatabase(SuggestionsDBHelper.DATABASE_NAME);
 
         // Helper instance
         mSuggestionsDBHelper = SuggestionsDBHelper.getInstance(getActivity());
@@ -138,7 +136,6 @@ public class SuggestionsFragment extends Fragment {
 
     @Override
     public void onResume() {
-
         super.onResume();
 
         boolean nightMode;

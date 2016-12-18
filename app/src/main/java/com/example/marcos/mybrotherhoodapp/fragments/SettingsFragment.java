@@ -6,6 +6,11 @@ import android.preference.PreferenceManager;
 
 import com.example.marcos.mybrotherhoodapp.R;
 
+/**
+ * Class SettingsFragment
+ * Fragment shown when in the settings section, as well as in settings in the option menu
+ * Shows all the preferences that can be modified in the app
+ */
 public class SettingsFragment extends PreferenceFragment {
 
 	public static final String KEY_PREF_NIGHTMODE = "pref_nightmode";

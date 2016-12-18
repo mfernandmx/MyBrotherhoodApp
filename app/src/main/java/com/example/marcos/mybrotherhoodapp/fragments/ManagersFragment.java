@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,28 +14,22 @@ import android.widget.TextView;
 import com.example.marcos.mybrotherhoodapp.R;
 
 /**
- * Created by Marcos on 09/11/2016.
+ * Class ManagersFragment
+ * Fragment shown when in the information section, in tab 'Managers'
  */
-
 public class ManagersFragment extends Fragment {
 
     private View v;
-    private static final String TAG = "ManagersFragment";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_managers, container, false);
-        Log.v(TAG,"onCreateView");
-
         return v;
     }
 
     @Override
     public void onResume() {
-
-        Log.v(TAG,"onResume");
-
         super.onResume();
 
         String textSize;

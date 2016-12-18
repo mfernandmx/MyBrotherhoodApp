@@ -6,22 +6,17 @@ import android.database.Cursor;
 import com.example.marcos.mybrotherhoodapp.SuggestionsConstract;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.UUID;
 
 /**
- * Created by Marcos on 14/11/2016.
+ * Class SuggestionItem
+ * Declares the attributes needed to manage the suggestions in the suggestions section
  */
-
 public class SuggestionItem implements Serializable {
 
     private String id;
     private String name;
     private String message;
-
-    public SuggestionItem() {
-
-    }
 
     public SuggestionItem(String name, String message){
         this.id = UUID.randomUUID().toString();

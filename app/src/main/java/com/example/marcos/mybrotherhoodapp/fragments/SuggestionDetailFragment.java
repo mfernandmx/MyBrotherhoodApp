@@ -1,6 +1,5 @@
 package com.example.marcos.mybrotherhoodapp.fragments;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -20,7 +19,8 @@ import com.example.marcos.mybrotherhoodapp.R;
 import com.example.marcos.mybrotherhoodapp.items.SuggestionItem;
 
 /**
- * Vista para el detalle del abogado
+ * Class SuggestionDetailFragment
+ * Fragment shown when in a suggestion is clicked
  */
 public class SuggestionDetailFragment extends Fragment {
     private static final String ARG_SUGGESTION_ID = "suggestionId";

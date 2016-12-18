@@ -3,7 +3,6 @@ package com.example.marcos.mybrotherhoodapp.fragments;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -18,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.TextView;
 
 import com.example.marcos.mybrotherhoodapp.DetailsGridActivity;
 import com.example.marcos.mybrotherhoodapp.R;
@@ -31,21 +29,18 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Marcos on 11/11/2016.
+ * Class GalleryFragment
+ * Fragment shown when in the gallery section
+ * Shows a set of photos from a Flickr Feed, with its correspondent names
  */
-
 public class GalleryFragment extends Fragment {
 
     private GridView gridView;
-    private GridViewAdapter gridAdapter;
 
     private static final String TAG = "GalleryFragment";
     private int maxNumPhotosShown;
@@ -89,6 +84,7 @@ public class GalleryFragment extends Fragment {
 
     private void loadData() {
         imageItems = new ArrayList<>();
+
         for (int i = 0; i < maxNumPhotosShown; i++) {
             Bitmap bitmap = null;
 
@@ -98,8 +94,6 @@ public class GalleryFragment extends Fragment {
             try {
                 bitmap = BitmapFactory.decodeStream((InputStream)new URL(photoLinks.get(i)).getContent(), null, options);
                 Log.v(TAG,photoLinks.get(i));
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -110,8 +104,8 @@ public class GalleryFragment extends Fragment {
 
     @Override
     public void onResume() {
-
         super.onResume();
+
         int backgroundColor;
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -196,11 +190,7 @@ public class GalleryFragment extends Fragment {
                     eventType = xpp.next(); //move to next element
                 }
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (IOException | XmlPullParserException e) {
                 e.printStackTrace();
             }
 
@@ -214,6 +204,7 @@ public class GalleryFragment extends Fragment {
             super.onPostExecute(i);
             progressDialog.dismiss();
 
+            GridViewAdapter gridAdapter;
             gridAdapter = new GridViewAdapter(getActivity(), R.layout.item_grid, imageItems);
             gridView.setAdapter(gridAdapter);
 

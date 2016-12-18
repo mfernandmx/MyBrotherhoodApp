@@ -1,10 +1,19 @@
 <resources>
+    <!-- Activities names -->
     <string name="app_name">My Brotherhood App</string>
     <string name="title_login">Log in to the app</string>
-    <string name="title_image">Image</string>
+    <string name="title_image">Image Details</string>
     <string name="title_add_edit">Add/Edit Suggestion</string>
     <string name="title_suggestion">Suggestion</string>
 
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Menu -->
+    <string name="action_settings">Settings</string>
+
+    <!-- Texts for simple fragments -->
     <string name="text_initial">
         Welcome to My Brotherhood App\n\n
 
@@ -15,7 +24,8 @@
         Enjoy it!
     </string>
 
-    <string name="text_history">El día 31 de marzo de 2011, el Obispado de Coria-Cáceres da el visto
+    <string name="text_history">
+        El día 31 de marzo de 2011, el Obispado de Coria-Cáceres da el visto
         bueno a la puesta en marcha de la Hermandad Universitaria de Jesús Condenado, gestada en los
         últimos años por un grupo de personas vinculadas a la Semana Santa cacereña y convencidas de
         que la nueva cofradía tiene espacio y sentido en estos tiempos, tanto por el momento en el
@@ -24,14 +34,18 @@
         nacida en el siglo XXI; realismo en la imaginería; austeridad en su forma y en su fondo,
         prescindiendo incluso de las ayudas públicas; y solidaridad con quienes precisan apoyo.
     </string>
-    <string name="text_social">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc finibus
+
+    <string name="text_social">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc finibus
         efficitur nibh ac viverra. Phasellus sapien libero, placerat egestas dictum vitae, dapibus
         id quam. Duis rhoncus, neque non sollicitudin pharetra, dui tellus ultrices lectus, non
         fermentum nunc tortor molestie libero. Pellentesque in nulla fermentum, posuere sapien quis,
         egestas tortor. Sed varius molestie arcu, vel tempus ipsum bibendum ut. Etiam pretium in
         enim in placerat. Integer nec convallis neque. Sed ullamcorper est vitae velit pharetra
         ultrices. Nunc tincidunt efficitur egestas. Phasellus imperdiet feugiat nisl, eget euismod
-        enim aliquet eu.</string>
+        enim aliquet eu.
+    </string>
+
     <string name="text_managers">
         This is the current composition of the Brotherhood Managers Team:\n\n
         – P. Fernando Alcázar Martínez\n
@@ -55,28 +69,20 @@
 
         Sharing the app help us to keep improving it
     </string>
-    <string name="text_unlogged">You must be logged to see this section</string>
 
+    <!-- Array for tab titles in information section -->
     <string-array name="titles_tab">
         <item>History</item>
         <item>Social</item>
         <item>Managers</item>
     </string-array>
 
-    <string name="title_activity_main2">My Brotherhood App</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
-    <string name="action_login">Log in</string>
-    <string name="action_share">Share</string>
-
+    <!-- Strings for suggestions interaction-->
     <string name="field_error">Set a value</string>
-
     <string name="action_edit">Edit</string>
     <string name="action_delete">Remove</string>
 
+    <!-- Preferences -->
     <string-array name="textSize">
         <item>Small</item>
         <item>Medium</item>
@@ -99,4 +105,7 @@
     <string name="pref_text_title">Text Preferences</string>
     <string name="pref_summary_text_size">Change text size according to your needs</string>
     <string name="pref_title_text_size">Text size</string>
+
+    <!-- General -->
+    <string name="title_activity_main2">My Brotherhood App</string>
 </resources>

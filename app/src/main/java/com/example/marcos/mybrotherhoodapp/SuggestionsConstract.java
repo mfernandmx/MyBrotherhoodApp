@@ -3,10 +3,9 @@ package com.example.marcos.mybrotherhoodapp;
 import android.provider.BaseColumns;
 
 /**
- * Created by Marcos on 15/11/2016.
+ * Class SuggestionsConstract
+ * Declares some static strings for use them in the DBHelper
  */
-
-//database scheme
 public class SuggestionsConstract {
 
     public static abstract class SuggestionEntry implements BaseColumns {

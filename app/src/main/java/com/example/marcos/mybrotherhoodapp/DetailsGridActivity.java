@@ -6,6 +6,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Class DetailsGridActivity
+ * Manage the activity created when a photo is clicked
+ */
 public class DetailsGridActivity extends ActionBarActivity {
 
     @Override

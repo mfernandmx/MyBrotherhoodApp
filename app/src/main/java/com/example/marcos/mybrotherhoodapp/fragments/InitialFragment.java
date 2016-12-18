@@ -14,9 +14,9 @@ import android.widget.TextView;
 import com.example.marcos.mybrotherhoodapp.R;
 
 /**
- * Created by Marcos on 10/11/2016.
+ * Class InitialFragment
+ * Fragment only shown when the app is open
  */
-
 public class InitialFragment extends Fragment {
 
     private View v;
@@ -31,7 +31,6 @@ public class InitialFragment extends Fragment {
 
     @Override
     public void onResume() {
-
         super.onResume();
 
         String textSize;

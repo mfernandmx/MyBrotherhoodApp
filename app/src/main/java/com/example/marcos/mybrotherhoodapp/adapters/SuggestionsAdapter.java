@@ -13,9 +13,9 @@ import com.example.marcos.mybrotherhoodapp.R;
 import com.example.marcos.mybrotherhoodapp.SuggestionsConstract;
 
 /**
- * Created by Marcos on 15/11/2016.
+ * Class SuggestionsAdapter
+ * Adapter used for showing the suggestions in the suggestions section
  */
-
 public class SuggestionsAdapter extends CursorAdapter {
 
     private boolean nightMode = false;
@@ -44,6 +44,7 @@ public class SuggestionsAdapter extends CursorAdapter {
         nameText.setText(name);
         messageText.setText(message);
 
+        // Change text color if the night mode is active
         int textColor;
         if (!nightMode){
             textColor = Color.BLACK;

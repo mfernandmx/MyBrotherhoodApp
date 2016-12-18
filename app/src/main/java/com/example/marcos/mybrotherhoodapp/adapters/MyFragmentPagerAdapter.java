@@ -9,13 +9,12 @@ import com.example.marcos.mybrotherhoodapp.fragments.SocialFragment;
 import com.example.marcos.mybrotherhoodapp.fragments.ManagersFragment;
 
 /**
- * Created by Marcos on 09/11/2016.
+ * Class MyFragmentPagerAdapter
+ * Adapter used for making the the information section with a ViewPager format
  */
-
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter{
 
     private String[] mTabTitles;
-
 
     public MyFragmentPagerAdapter(FragmentManager fm, String[] mTabTitles) {
         super(fm);
@@ -25,22 +24,24 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter{
     @Override
     public Fragment getItem(int position) {
 
+        Fragment fragment = null;
+
         switch (position){
             case 0:
-                return new HistoryFragment();
+                fragment = new HistoryFragment();
+                break;
             case 1:
-                return new SocialFragment();
+                fragment = new SocialFragment();
+                break;
             case 2:
-                return new ManagersFragment();
-            default:
-                return null;
+                fragment = new ManagersFragment();
+                break;
         }
+
+        return fragment;
 
     }
 
-    /**
-     * @return number of views available
-     */
     @Override
     public int getCount() {
         return this.mTabTitles.length;

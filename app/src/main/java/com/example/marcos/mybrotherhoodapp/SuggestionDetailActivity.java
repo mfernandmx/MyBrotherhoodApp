@@ -7,6 +7,10 @@ import android.view.Menu;
 import com.example.marcos.mybrotherhoodapp.fragments.SuggestionDetailFragment;
 import com.example.marcos.mybrotherhoodapp.fragments.SuggestionsFragment;
 
+/**
+ * Class SuggestionDetailActivity
+ * Manage the activity created when a suggestion is clicked
+ */
 public class SuggestionDetailActivity extends AppCompatActivity {
 
     @Override
@@ -25,8 +29,6 @@ public class SuggestionDetailActivity extends AppCompatActivity {
                     .add(R.id.suggestion_detail_container, fragment)
                     .commit();
         }
-
-
     }
 
     @Override

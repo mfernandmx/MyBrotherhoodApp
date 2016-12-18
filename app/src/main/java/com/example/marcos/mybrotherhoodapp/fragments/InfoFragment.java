@@ -13,26 +13,23 @@ import com.example.marcos.mybrotherhoodapp.R;
 import com.example.marcos.mybrotherhoodapp.adapters.MyFragmentPagerAdapter;
 
 /**
- * Created by Marcos on 11/11/2016.
+ * Class InfoFragment
+ * Fragment shown when in the information section
+ * Shows a ViewPager with several tabs and its correspondent fragments
  */
-
 public class InfoFragment extends Fragment {
-
-    private TabLayout mTabLayout;
-    private ViewPager mViewPager;
-
-    View v;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_information, container, false);
-
-        return v;
+        return inflater.inflate(R.layout.fragment_information, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+        TabLayout mTabLayout;
+        ViewPager mViewPager;
 
         mTabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         mViewPager = (ViewPager) view.findViewById(R.id.view_pager);

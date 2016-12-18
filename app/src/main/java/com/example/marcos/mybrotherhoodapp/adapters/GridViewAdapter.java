@@ -3,6 +3,8 @@ package com.example.marcos.mybrotherhoodapp.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,28 +17,33 @@ import com.example.marcos.mybrotherhoodapp.items.ImageItem;
 
 import java.util.ArrayList;
 
+/**
+ * Class GridViewAdapter
+ * Adapter used for showing the images in the gallery
+ */
 public class GridViewAdapter extends ArrayAdapter<ImageItem> {
 
-    private Context context;
+    private Context mContext;
     private int layoutResourceId;
-    private ArrayList<ImageItem> data = new ArrayList<>();
+    private ArrayList<ImageItem> mDataList = new ArrayList<>();
 
     private boolean nightMode = false;
 
-    public GridViewAdapter(Context context, int layoutResourceId, ArrayList<ImageItem> data) {
-        super(context, layoutResourceId, data);
+    public GridViewAdapter(Context context, int layoutResourceId, ArrayList<ImageItem> dataList) {
+        super(context, layoutResourceId, dataList);
         this.layoutResourceId = layoutResourceId;
-        this.context = context;
-        this.data = data;
+        this.mContext = context;
+        this.mDataList = dataList;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    @NonNull
+    public View getView(int position, View convertView, @Nullable ViewGroup parent) {
         View row = convertView;
         ViewHolder holder;
 
         if (row == null) {
-            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+            LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
             holder = new ViewHolder();
             holder.imageTitle = (TextView) row.findViewById(R.id.gridText);
@@ -46,25 +53,25 @@ public class GridViewAdapter extends ArrayAdapter<ImageItem> {
             holder = (ViewHolder) row.getTag();
         }
 
+        ImageItem item = mDataList.get(position);
 
-        ImageItem item = data.get(position);
-
+        holder.image.setImageBitmap(item.getImage());
         holder.imageTitle.setText(item.getTitle());
 
+        // Change text color if the night mode is active
         int textColor;
         if (!nightMode){
             textColor = Color.BLACK;
         } else{
             textColor = Color.WHITE;
         }
+
         holder.imageTitle.setTextColor(textColor);
 
-
-        holder.image.setImageBitmap(item.getImage());
         return row;
     }
 
-    static class ViewHolder {
+    private static class ViewHolder {
         TextView imageTitle;
         ImageView image;
     }

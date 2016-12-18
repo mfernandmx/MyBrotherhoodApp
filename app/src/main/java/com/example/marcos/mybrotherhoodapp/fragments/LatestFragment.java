@@ -13,7 +13,6 @@ import android.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,18 +33,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Marcos on 10/11/2016.
+ * Class LatestFragment
+ * Fragment shown in the latest section
+ * Shows a set of links from a RSS Feed, with its correspondent titles
  */
-
 public class LatestFragment extends Fragment {
 
     private List<String> headlines;
     private List<String> links;
     private List<LatestItem> data;
     private RecyclerView rvLatest;
-    public RecyclerViewAdapter adapter;
-
-    private static final String TAG = "LatestFragment";
+    public RecyclerViewAdapter rvAdapter;
 
     View v;
 
@@ -53,8 +51,6 @@ public class LatestFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        Log.v(TAG, "onCreateView");
 
         v = inflater.inflate(R.layout.recycler_view, container, false);
 
@@ -72,8 +68,6 @@ public class LatestFragment extends Fragment {
     }
 
     public void initializeData(){
-
-        Log.v(TAG, "initializeData");
 
         headlines = new ArrayList<>();
         links = new ArrayList<>();
@@ -99,9 +93,7 @@ public class LatestFragment extends Fragment {
 
     public void initializeAdapter(){
 
-        Log.v(TAG, "initializeAdapter");
-
-        adapter = new RecyclerViewAdapter(data, new RecyclerViewAdapter.OnItemClickListener(){
+        rvAdapter = new RecyclerViewAdapter(data, new RecyclerViewAdapter.OnItemClickListener(){
             @Override public void onItemClick(LatestItem item) {
                 Uri uri = Uri.parse(item.getLink());
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -109,7 +101,7 @@ public class LatestFragment extends Fragment {
             }
         });
 
-        rvLatest.setAdapter(adapter);
+        rvLatest.setAdapter(rvAdapter);
     }
 
     private class ProcessXML extends AsyncTask<URL, Void, Integer> {
@@ -125,7 +117,6 @@ public class LatestFragment extends Fragment {
         }
 
         protected Integer doInBackground(URL... urls) {
-            Log.v(TAG,"doInBackground");
             try {
                 URL url = urls[0];
 
@@ -167,11 +158,7 @@ public class LatestFragment extends Fragment {
                     eventType = xpp.next(); //move to next element
                 }
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (IOException | XmlPullParserException e) {
                 e.printStackTrace();
             }
 
@@ -183,8 +170,6 @@ public class LatestFragment extends Fragment {
 
             progressDialog.dismiss();
 
-            Log.v(TAG, "Headlines: " + numHeadlines);
-
             for (int i = 0; i < headlines.size(); i++){
                 data.add(i, new LatestItem(headlines.get(i), links.get(i)));
             }
@@ -195,7 +180,6 @@ public class LatestFragment extends Fragment {
 
     @Override
     public void onResume() {
-
         super.onResume();
 
         boolean nightMode;

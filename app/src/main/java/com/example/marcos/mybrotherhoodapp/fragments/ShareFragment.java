@@ -16,9 +16,9 @@ import android.widget.TextView;
 import com.example.marcos.mybrotherhoodapp.R;
 
 /**
- * Created by Marcos on 11/11/2016.
+ * Class ShareFragment
+ * Fragment shown when in the share section
  */
-
 public class ShareFragment extends Fragment {
 
     View v;
@@ -51,7 +51,6 @@ public class ShareFragment extends Fragment {
 
     @Override
     public void onResume() {
-
         super.onResume();
 
         boolean nightMode;
@@ -73,6 +72,5 @@ public class ShareFragment extends Fragment {
         }
         v.setBackgroundColor(backgroundColor);
         textView.setTextColor(textColor);
-
     }
 }

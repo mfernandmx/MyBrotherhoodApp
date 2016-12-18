@@ -9,9 +9,9 @@ import android.util.Log;
 import com.example.marcos.mybrotherhoodapp.items.SuggestionItem;
 
 /**
- * Created by Marcos on 15/11/2016.
+ * Class SuggestionsDBHelper
+ * Manage all the interaction with the suggestions database, including its creation
  */
-
 public class SuggestionsDBHelper extends SQLiteOpenHelper {
 
     private static SuggestionsDBHelper sInstance;
@@ -19,7 +19,7 @@ public class SuggestionsDBHelper extends SQLiteOpenHelper {
     private static final String TAG = "SuggestionsDBHelper";
 
     private static int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "Suggestions.db";
+    private static final String DATABASE_NAME = "Suggestions.db";
 
     public static synchronized SuggestionsDBHelper getInstance(Context context) {
         if (sInstance == null) {

@@ -6,6 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.marcos.mybrotherhoodapp.fragments.AddEditSuggestionFragment;
 import com.example.marcos.mybrotherhoodapp.fragments.SuggestionsFragment;
 
+/**
+ * Class AddEditSuggestionActivity
+ * Manage the activity for adding/editing a suggestion
+ */
 public class AddEditSuggestionActivity extends AppCompatActivity {
 
     public static final int REQUEST_ADD_SUGGESTION = 1;
